@@ -1,7 +1,7 @@
 /*
  ********************************************************************************
  *
- * $Id: lastofmonth.c,v 1.1 2003/11/04 16:58:53 sauerlaender Exp $
+ * $Id: lastofmonth.c,v 1.2 2003/11/04 18:03:42 sauerlaender Exp $
  *
  ********************************************************************************
  *
@@ -25,8 +25,11 @@
  ********************************************************************************
  *
  * $Log: lastofmonth.c,v $
- * Revision 1.1  2003/11/04 16:58:53  sauerlaender
- * Initial revision
+ * Revision 1.2  2003/11/04 18:03:42  sauerlaender
+ * New parameter "-v" added to show the current release number...
+ *
+ * Revision 1.1.1.1  2003/11/04 16:58:53  sauerlaender
+ * Imported sources
  *
  ********************************************************************************
  */
@@ -42,6 +45,8 @@
 #define RC_ILLEGAL_OPTION 101
 #define RC_ILLEGAL_MONTH 102
 #define RC_ILLEGAL_YEAR 103
+#define RELEASE "1.0"
+#define RELEASE_DATE "2003-11-04"
 
 int main(int argc, char *argv[])
 {
@@ -54,7 +59,7 @@ int main(int argc, char *argv[])
  char *bname;
  bname = basename(argv[0]);
 
- while ((option = getopt (argc, argv, "qhlm:y:")) != EOF)
+ while ((option = getopt (argc, argv, "vqhlm:y:")) != EOF)
  {
   switch (option)
   {
@@ -109,6 +114,16 @@ int main(int argc, char *argv[])
     quit = 1;
     break;
    }
+   case 'v':
+   {
+    printf("\n %s %s (released %s)\n", bname, RELEASE, RELEASE_DATE);
+    printf("\n  Copyright (C) 2003 by drueeke.net");
+    printf("\n  This program comes with NO WARRANTY, to the extent permitted by law.");
+    printf("\n  You may redistribute it under the terms of the GNU General Public License;");
+    printf("\n  see the file named COPYING for details.");
+    printf("\n  Written by Christian Drueeke (linux@drueeke.net).\n\n");
+    return RC_OK;
+   } 
    default:
    {
     fprintf(stderr,"\nTry %s -h\n",bname);
