@@ -1,0 +1,9 @@
+Basic Installation
+==================
+
+Just type:
+  make
+  su
+  make install
+
+That's all...!
